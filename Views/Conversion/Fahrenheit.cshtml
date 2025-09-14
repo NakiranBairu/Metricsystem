@@ -1,0 +1,35 @@
+@model MetricSystem.Models.TemperatureModel
+@{
+    ViewData["Title"] = "Fahrenheit Conversion";
+}
+
+<div class="fahrenheit-container">
+    <h1 class="fahrenheit-title">Convert Fahrenheit to Celceius</h1>
+    @if (ViewBag.Error != null)
+    {
+        <div class="text-danger" style="font-weight:500; margin-bottom:12px;">
+            <i class="fa fa-circle" style="font-size:0.7em; vertical-align:middle;"></i>
+            <span style="margin-left:6px;">@ViewBag.Error</span>
+        </div>
+    }
+    <form asp-action="Fahrenheit" method="post">
+        <div class="fahrenheit-group">
+            <label for="Fahrenheit" class="fahrenheit-label">Fahrenheit Value</label>
+            <input asp-for="Fahrenheit" class="form-control" />
+        </div>
+        <div class="fahrenheit-group">
+            <label for="Celsius" class="fahrenheit-label">Celceius Value</label>
+            <input class="form-control" id="Celsius" readonly value="@(Model.Celsius.HasValue ? Model.Celsius.Value.ToString("F2") : string.Empty)" />
+        </div>
+        <button type="submit" class="fahrenheit-btn">Convert</button>
+        <button type="button" id="clearBtn" class="fahrenheit-btn">Clear</button>
+    </form>
+</div>
+<script>
+    document.getElementById('clearBtn').addEventListener('click', function() {
+        document.querySelector('input[name="Fahrenheit"]').value = '';
+        document.getElementById('Celsius').value = '';
+    });
+</script>
+  
+
