@@ -5,5 +5,12 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+ name: Build with dotnet
+        run: dotnet build --configuration Release
+        working-directory: src/Metricsystem.WebApp
+
+      - name: dotnet publish
+        run: dotnet publish --configuration Release --output "${{github.workspace}}/myapp"
+        working-directory: src/Metricsystem.WebApp
 
 </Project>
